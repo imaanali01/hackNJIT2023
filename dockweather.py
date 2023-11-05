@@ -67,16 +67,18 @@ if page == "Home":
         
         # Place a logo at the top of each column
         with col1:
-            st.image("https://www.creativefabrica.com/wp-content/uploads/2019/02/Earth-icon-by-rudezstudio-1-580x386.jpg", width=225)
-            if weather_data:
-                st.write(f'<div style="text-align: center;">Location: {city}</div>', unsafe_allow_html=True)
+            st.write("")
+            left_co, cent_co,last_co = st.columns(3)
+            with cent_co:
+                st.image("https://cdn2.iconfinder.com/data/icons/flat-icons-19/512/Globe.png", width=140)
+                if weather_data:
+                    st.write(f'<div style="text-align: center;">Location: {city}</div>', unsafe_allow_html=True)
         
         with col2:
             st.write("")
             left_co, cent_co,last_co = st.columns(3)
             with cent_co:
-                st.image("https://www.pngall.com/wp-content/uploads/2017/01/Temperature-PNG-Clipart.png", width=100)
-                st.write("")
+                st.image("https://www.pngall.com/wp-content/uploads/2017/01/Temperature-PNG-Clipart.png", width=120)
                 st.write("")
             st.write(f'<div style="text-align: center;">Temperature: {weather_data['main']['temp']} {units[0]}</div>', unsafe_allow_html=True)
         
@@ -87,12 +89,13 @@ if page == "Home":
                 left_co, cent_co,last_co = st.columns(3)
                 with cent_co:
                     if weather_condition == 'Clear':
-                        st.image("https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png", width=100)
+                        st.image("https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png", width=120)
                     elif weather_condition == 'Clouds':
-                        st.image("https://visualpharm.com/assets/942/Clouds-595b40b65ba036ed117d3942.svg", width=100)
+                        st.image("https://visualpharm.com/assets/942/Clouds-595b40b65ba036ed117d3942.svg", width=120)
                     elif weather_condition == 'Rain':
-                        st.image("https://cdn1.vectorstock.com/i/1000x1000/59/60/rain-cloud-icon-line-raindrop-symbol-vector-21085960.jpg", width=100)
-            st.write("")
+                        st.image("https://cdn1.vectorstock.com/i/1000x1000/59/60/rain-cloud-icon-line-raindrop-symbol-vector-21085960.jpg", width=120)
+                    elif weather_condition == 'Mist': 
+                        st.image("https://cdn3.iconfinder.com/data/icons/flat-main-weather-conditions-2/842/fog-512.png", width=120)
             st.write("")
             st.write(f'<div style="text-align: center;">Conditions: {weather_data['weather'][0]['description']}</div>', unsafe_allow_html=True)
             
