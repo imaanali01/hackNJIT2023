@@ -6,4 +6,4 @@ st.title("My First Streamlit App")
 user_input = st.text_input("Enter your name", "Your Name")
 
 # Display a greeting
-st.write(f"Hello, {user_input}!")
+st.write(f"Goodbye, {user_input}!")
