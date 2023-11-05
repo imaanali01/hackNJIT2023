@@ -59,43 +59,37 @@ if page == "Home":
     st.write("")
 
     if show_weather:
-        
         weather_data = get_weather_data(city, units, API_KEY)
-            
-        # Create a layout with three columns
-        col1, col2, col3 = st.columns(3)
+    
+        # Create a layout with a single column to center the content
+        center_col = st.columns(1)
         
-        # Place a logo at the top of each column
-        with col1:
+        # Place the three columns inside the center column
+        with center_col[0]:
             st.image("https://www.creativefabrica.com/wp-content/uploads/2019/02/Earth-icon-by-rudezstudio-1-580x386.jpg", width=225)
             if weather_data:
                 st.write(f'<div style="text-align: center;">Location: {city}</div>', unsafe_allow_html=True)
-        
-        with col2:
-            st.write("")
-            left_co, cent_co,last_co = st.columns(3)
-            with cent_co:
+
+            left_col, center_col, right_col = st.columns(3)
+
+            with center_col:
                 st.image("https://www.pngall.com/wp-content/uploads/2017/01/Temperature-PNG-Clipart.png", width=100)
+                st.write(f'<div style="text-align: center;">Temperature: {weather_data['main']['temp']} {units[0]}</div>', unsafe_allow_html=True)
+
+            with right_col:
+                if 'weather' in weather_data:
+                    weather_condition = weather_data['weather'][0]['main']
+                    with center_col:
+                        if weather_condition == 'Clear':
+                            st.image("https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png", width=100)
+                        elif weather_condition == 'Clouds':
+                            st.image("https://visualpharm.com/assets/942/Clouds-595b40b65ba036ed117d3942.svg", width=100)
+                        elif weather_condition == 'Rain':
+                            st.image("https://cdn1.vectorstock.com/i/1000x1000/59/60/rain-cloud-icon-line-raindrop-symbol-vector-21085960.jpg", width=100)
+
                 st.write("")
-                st.write("")
-            st.write(f'<div style="text-align: center;">Temperature: {weather_data['main']['temp']} {units[0]}</div>', unsafe_allow_html=True)
-        
-        with col3:
-            st.write("")
-            if 'weather' in weather_data:
-                weather_condition = weather_data['weather'][0]['main']
-                left_co, cent_co,last_co = st.columns(3)
-                with cent_co:
-                    if weather_condition == 'Clear':
-                        st.image("https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png", width=100)
-                    elif weather_condition == 'Clouds':
-                        st.image("https://visualpharm.com/assets/942/Clouds-595b40b65ba036ed117d3942.svg", width=100)
-                    elif weather_condition == 'Rain':
-                        st.image("https://cdn1.vectorstock.com/i/1000x1000/59/60/rain-cloud-icon-line-raindrop-symbol-vector-21085960.jpg", width=100)
-            st.write("")
-            st.write("")
-            st.write(f'<div style="text-align: center;">Conditions: {weather_data['weather'][0]['description']}</div>', unsafe_allow_html=True)
-            
+                st.write(f'<div style="text-align: center;">Conditions: {weather_data['weather'][0]['description']}</div>', unsafe_allow_html=True)
+                
 
     st.write("")
     st.write("")
